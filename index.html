@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="장인의 손끝에서 탄생한 프리미엄 수공예 가죽 지갑. 정성을 담은 핸드메이드 지갑을 만나보세요.">
+    <title>아뜰리에 가죽공방 | 프리미엄 수공예 지갑</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👛</text></svg>">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">아뜰리에 <span>가죽공방</span></a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link active">홈</a>
+                <a href="products.html" class="nav-link">제품</a>
+                <a href="#brand-story" class="nav-link">브랜드 스토리</a>
+                <a href="cart.html" class="nav-link cart-icon">
+                    🛒
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+            </nav>
+            <button class="mobile-menu-btn" aria-label="메뉴">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-decoration"></div>
+        <div class="hero-decoration"></div>
+        <div class="hero-content">
+            <p class="hero-subtitle">Handcrafted Leather Goods</p>
+            <h1 class="hero-title">
+                장인의 손끝에서<br>
+                탄생한 <span>지갑</span>
+            </h1>
+            <p class="hero-description">
+                이탈리아 최상급 가죽과 30년 장인의 정성이 만나<br>
+                세상에 단 하나뿐인 당신만의 지갑을 선물합니다.
+            </p>
+            <div class="hero-buttons">
+                <a href="products.html" class="btn btn-primary btn-lg">제품 보러가기</a>
+                <a href="#brand-story" class="btn btn-secondary btn-lg">브랜드 스토리</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Story Section -->
+    <section class="section brand-story" id="brand-story">
+        <div class="container">
+            <div class="brand-story-grid">
+                <div class="brand-story-content">
+                    <h2>30년 장인정신으로<br><span class="text-gold">완성되는 가치</span></h2>
+                    <p>
+                        아뜰리에 가죽공방은 1994년부터 오직 수공예 가죽제품만을 고집해왔습니다. 
+                        기계 대량생산이 아닌, 한 땀 한 땀 정성을 담아 만드는 우리의 철학은 
+                        30년이 지난 지금도 변함없이 이어지고 있습니다.
+                    </p>
+                    <p>
+                        이탈리아 토스카나 지방에서 직접 선별한 최상급 베지터블 가죽만을 사용하며,
+                        시간이 지날수록 깊어지는 가죽 특유의 경년변화를 경험하실 수 있습니다.
+                    </p>
+                    
+                    <div class="brand-features">
+                        <div class="brand-feature">
+                            <div class="brand-feature-icon">🇮🇹</div>
+                            <div>
+                                <h4>이탈리아 가죽</h4>
+                                <p>토스카나 최상급 베지터블 가죽</p>
+                            </div>
+                        </div>
+                        <div class="brand-feature">
+                            <div class="brand-feature-icon">✋</div>
+                            <div>
+                                <h4>100% 수작업</h4>
+                                <p>장인의 손으로 직접 제작</p>
+                            </div>
+                        </div>
+                        <div class="brand-feature">
+                            <div class="brand-feature-icon">🏆</div>
+                            <div>
+                                <h4>30년 전통</h4>
+                                <p>1994년부터 이어온 노하우</p>
+                            </div>
+                        </div>
+                        <div class="brand-feature">
+                            <div class="brand-feature-icon">🎁</div>
+                            <div>
+                                <h4>각인 서비스</h4>
+                                <p>무료 이니셜 각인 제공</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="brand-story-image">
+                    <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&h=750&fit=crop" 
+                         alt="장인이 가죽 지갑을 수작업으로 제작하는 모습">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Products Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>인기 <span class="text-gold">제품</span></h2>
+                <p>가장 사랑받는 아뜰리에의 시그니처 컬렉션을 만나보세요.</p>
+            </div>
+            
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <article class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1627123424574-724758594e93?w=400&h=400&fit=crop" 
+                             alt="클래식 반지갑">
+                        <span class="product-badge">BEST</span>
+                        <div class="product-actions">
+                            <button class="product-action-btn" title="장바구니 담기" onclick="addToCart(1)">🛒</button>
+                            <a href="product-detail.html?id=1" class="product-action-btn" title="자세히 보기">👁️</a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-category">반지갑</p>
+                        <h3 class="product-name">클래식 반지갑</h3>
+                        <p class="product-price">₩89,000</p>
+                    </div>
+                </article>
+
+                <!-- Product 2 -->
+                <article class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1606503825008-909a67e63c3d?w=400&h=400&fit=crop" 
+                             alt="미니 카드지갑">
+                        <span class="product-badge">NEW</span>
+                        <div class="product-actions">
+                            <button class="product-action-btn" title="장바구니 담기" onclick="addToCart(2)">🛒</button>
+                            <a href="product-detail.html?id=2" class="product-action-btn" title="자세히 보기">👁️</a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-category">카드지갑</p>
+                        <h3 class="product-name">미니 카드지갑</h3>
+                        <p class="product-price">₩49,000</p>
+                    </div>
+                </article>
+
+                <!-- Product 3 -->
+                <article class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1612902456551-333ac5afa26e?w=400&h=400&fit=crop" 
+                             alt="빈티지 장지갑">
+                        <div class="product-actions">
+                            <button class="product-action-btn" title="장바구니 담기" onclick="addToCart(3)">🛒</button>
+                            <a href="product-detail.html?id=3" class="product-action-btn" title="자세히 보기">👁️</a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-category">장지갑</p>
+                        <h3 class="product-name">빈티지 장지갑</h3>
+                        <p class="product-price">₩129,000</p>
+                    </div>
+                </article>
+
+                <!-- Product 4 -->
+                <article class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1559563458-527698bf5295?w=400&h=400&fit=crop" 
+                             alt="슬림 머니클립">
+                        <div class="product-actions">
+                            <button class="product-action-btn" title="장바구니 담기" onclick="addToCart(4)">🛒</button>
+                            <a href="product-detail.html?id=4" class="product-action-btn" title="자세히 보기">👁️</a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-category">머니클립</p>
+                        <h3 class="product-name">슬림 머니클립</h3>
+                        <p class="product-price">₩69,000</p>
+                    </div>
+                </article>
+            </div>
+
+            <div style="text-align: center; margin-top: var(--spacing-2xl);">
+                <a href="products.html" class="btn btn-secondary">모든 제품 보기</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="section" style="background: var(--color-bg-card);">
+        <div class="container">
+            <div class="section-header">
+                <h2>특별한 <span class="text-gold">혜택</span>을 받아보세요</h2>
+                <p>뉴스레터를 구독하시면 신제품 소식과 할인 혜택을 가장 먼저 받아보실 수 있습니다.</p>
+            </div>
+            <form style="max-width: 500px; margin: 0 auto; display: flex; gap: var(--spacing-md);">
+                <input type="email" class="form-input" placeholder="이메일 주소를 입력하세요" style="flex: 1;">
+                <button type="submit" class="btn btn-primary">구독하기</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">아뜰리에 <span>가죽공방</span></a>
+                    <p>30년 전통의 장인정신으로 만드는<br>프리미엄 수공예 가죽 지갑</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="인스타그램">📷</a>
+                        <a href="#" aria-label="페이스북">📘</a>
+                        <a href="#" aria-label="카카오톡">💬</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>제품</h4>
+                    <ul>
+                        <li><a href="products.html?category=half">반지갑</a></li>
+                        <li><a href="products.html?category=long">장지갑</a></li>
+                        <li><a href="products.html?category=card">카드지갑</a></li>
+                        <li><a href="products.html?category=clip">머니클립</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>고객 서비스</h4>
+                    <ul>
+                        <li><a href="#">배송 안내</a></li>
+                        <li><a href="#">교환 및 반품</a></li>
+                        <li><a href="#">A/S 안내</a></li>
+                        <li><a href="#">자주 묻는 질문</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>연락처</h4>
+                    <ul>
+                        <li>📞 02-1234-5678</li>
+                        <li>📧 hello@atelier-leather.kr</li>
+                        <li>🕐 평일 10:00 - 18:00</li>
+                        <li>📍 서울시 성동구 성수동</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 아뜰리에 가죽공방. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

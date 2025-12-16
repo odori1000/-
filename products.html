@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="아뜰리에 가죽공방의 수공예 가죽 지갑 컬렉션을 만나보세요.">
+    <title>제품 목록 | 아뜰리에 가죽공방</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👛</text></svg>">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">아뜰리에 <span>가죽공방</span></a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">홈</a>
+                <a href="products.html" class="nav-link active">제품</a>
+                <a href="index.html#brand-story" class="nav-link">브랜드 스토리</a>
+                <a href="cart.html" class="nav-link cart-icon">
+                    🛒
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+            </nav>
+            <button class="mobile-menu-btn" aria-label="메뉴">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main style="padding-top: 100px; min-height: 100vh;">
+        <div class="container">
+            <div class="section-header" style="margin-bottom: var(--spacing-2xl);">
+                <h1>모든 <span class="text-gold">제품</span></h1>
+                <p>장인의 손끝에서 탄생한 프리미엄 수공예 지갑 컬렉션</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 250px 1fr; gap: var(--spacing-2xl);"
+                class="products-layout">
+                <!-- Filter Sidebar -->
+                <aside class="filter-sidebar">
+                    <div class="filter-group">
+                        <h3 class="filter-title">카테고리</h3>
+                        <div class="filter-option" data-category="half">
+                            <div class="filter-checkbox"></div>
+                            <span class="filter-label">반지갑</span>
+                        </div>
+                        <div class="filter-option" data-category="long">
+                            <div class="filter-checkbox"></div>
+                            <span class="filter-label">장지갑</span>
+                        </div>
+                        <div class="filter-option" data-category="card">
+                            <div class="filter-checkbox"></div>
+                            <span class="filter-label">카드지갑</span>
+                        </div>
+                        <div class="filter-option" data-category="clip">
+                            <div class="filter-checkbox"></div>
+                            <span class="filter-label">머니클립</span>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h3 class="filter-title">가격대</h3>
+                        <div class="filter-option" data-price="under50">
+                            <div class="filter-checkbox"></div>
+                            <span class="filter-label">5만원 미만</span>
+                        </div>
+                        <div class="filter-option" data-price="50to100">
+                            <div class="filter-checkbox"></div>
+                            <span class="filter-label">5만원 ~ 10만원</span>
+                        </div>
+                        <div class="filter-option" data-price="over100">
+                            <div class="filter-checkbox"></div>
+                            <span class="filter-label">10만원 이상</span>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-secondary btn-full" onclick="resetFilters()"
+                        style="margin-top: var(--spacing-lg);">
+                        필터 초기화
+                    </button>
+                </aside>
+
+                <!-- Products Grid -->
+                <div>
+                    <!-- Sort Bar -->
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-xl);">
+                        <p class="text-secondary"><span id="productCount">8</span>개의 제품</p>
+                        <select id="sortSelect" class="form-input"
+                            style="width: auto; padding: var(--spacing-sm) var(--spacing-md);">
+                            <option value="newest">최신순</option>
+                            <option value="price-low">가격 낮은순</option>
+                            <option value="price-high">가격 높은순</option>
+                            <option value="rating">평점순</option>
+                        </select>
+                    </div>
+
+                    <div class="products-grid" id="productsGrid">
+                        <!-- Products will be rendered here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">아뜰리에 <span>가죽공방</span></a>
+                    <p>30년 전통의 장인정신으로 만드는<br>프리미엄 수공예 가죽 지갑</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="인스타그램">📷</a>
+                        <a href="#" aria-label="페이스북">📘</a>
+                        <a href="#" aria-label="카카오톡">💬</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>제품</h4>
+                    <ul>
+                        <li><a href="products.html?category=half">반지갑</a></li>
+                        <li><a href="products.html?category=long">장지갑</a></li>
+                        <li><a href="products.html?category=card">카드지갑</a></li>
+                        <li><a href="products.html?category=clip">머니클립</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>고객 서비스</h4>
+                    <ul>
+                        <li><a href="#">배송 안내</a></li>
+                        <li><a href="#">교환 및 반품</a></li>
+                        <li><a href="#">A/S 안내</a></li>
+                        <li><a href="#">자주 묻는 질문</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>연락처</h4>
+                    <ul>
+                        <li>📞 02-1234-5678</li>
+                        <li>📧 hello@atelier-leather.kr</li>
+                        <li>🕐 평일 10:00 - 18:00</li>
+                        <li>📍 서울시 성동구 성수동</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 아뜰리에 가죽공방. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // 필터 상태
+        let activeCategories = [];
+        let activePriceRanges = [];
+        let currentSort = 'newest';
+
+        // 제품 렌더링
+        function renderProducts() {
+            const filteredProducts = filterProducts({
+                categories: activeCategories,
+                priceRanges: activePriceRanges,
+                sort: currentSort
+            });
+
+            const grid = document.getElementById('productsGrid');
+            const countEl = document.getElementById('productCount');
+
+            grid.innerHTML = filteredProducts.map(p => createProductCardHTML(p)).join('');
+            countEl.textContent = filteredProducts.length;
+        }
+
+        // 필터 토글
+        function setupFilters() {
+            // 카테고리 필터
+            document.querySelectorAll('.filter-option[data-category]').forEach(option => {
+                option.addEventListener('click', function () {
+                    const category = this.dataset.category;
+                    this.classList.toggle('active');
+
+                    if (this.classList.contains('active')) {
+                        activeCategories.push(category);
+                    } else {
+                        activeCategories = activeCategories.filter(c => c !== category);
+                    }
+
+                    renderProducts();
+                });
+            });
+
+            // 가격 필터
+            document.querySelectorAll('.filter-option[data-price]').forEach(option => {
+                option.addEventListener('click', function () {
+                    const price = this.dataset.price;
+                    this.classList.toggle('active');
+
+                    if (this.classList.contains('active')) {
+                        activePriceRanges.push(price);
+                    } else {
+                        activePriceRanges = activePriceRanges.filter(p => p !== price);
+                    }
+
+                    renderProducts();
+                });
+            });
+
+            // 정렬
+            document.getElementById('sortSelect').addEventListener('change', function () {
+                currentSort = this.value;
+                renderProducts();
+            });
+
+            // URL 파라미터로 카테고리 설정
+            const urlCategory = getUrlParam('category');
+            if (urlCategory) {
+                const option = document.querySelector(`.filter-option[data-category="${urlCategory}"]`);
+                if (option) {
+                    option.classList.add('active');
+                    activeCategories.push(urlCategory);
+                }
+            }
+        }
+
+        // 필터 초기화
+        function resetFilters() {
+            activeCategories = [];
+            activePriceRanges = [];
+            currentSort = 'newest';
+
+            document.querySelectorAll('.filter-option').forEach(option => {
+                option.classList.remove('active');
+            });
+
+            document.getElementById('sortSelect').value = 'newest';
+            renderProducts();
+        }
+
+        // 반응형 레이아웃
+        function handleResponsive() {
+            const layout = document.querySelector('.products-layout');
+            if (window.innerWidth <= 768) {
+                layout.style.gridTemplateColumns = '1fr';
+            } else {
+                layout.style.gridTemplateColumns = '250px 1fr';
+            }
+        }
+
+        // 초기화
+        document.addEventListener('DOMContentLoaded', function () {
+            setupFilters();
+            renderProducts();
+            handleResponsive();
+            window.addEventListener('resize', handleResponsive);
+        });
+    </script>
+</body>
+
+</html>

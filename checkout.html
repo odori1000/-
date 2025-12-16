@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="아뜰리에 가죽공방 결제">
+    <title>결제하기 | 아뜰리에 가죽공방</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👛</text></svg>">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">아뜰리에 <span>가죽공방</span></a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">홈</a>
+                <a href="products.html" class="nav-link">제품</a>
+                <a href="index.html#brand-story" class="nav-link">브랜드 스토리</a>
+                <a href="cart.html" class="nav-link cart-icon">
+                    🛒
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+            </nav>
+            <button class="mobile-menu-btn" aria-label="메뉴">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="checkout-page section">
+        <div class="container">
+            <h1 style="margin-bottom: var(--spacing-2xl);">결제하기</h1>
+
+            <div class="checkout-grid">
+                <!-- Checkout Form -->
+                <div class="checkout-form">
+                    <!-- Shipping Info -->
+                    <div class="checkout-section">
+                        <h3>📦 배송 정보</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">이름 *</label>
+                                <input type="text" class="form-input" id="name" placeholder="홍길동" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">연락처 *</label>
+                                <input type="tel" class="form-input" id="phone" placeholder="010-1234-5678" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">이메일 *</label>
+                            <input type="email" class="form-input" id="email" placeholder="example@email.com" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">우편번호 *</label>
+                                <input type="text" class="form-input" id="zipcode" placeholder="12345" required>
+                            </div>
+                            <div class="form-group" style="display: flex; align-items: flex-end;">
+                                <button type="button" class="btn btn-dark" onclick="searchAddress()">주소 검색</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">주소 *</label>
+                            <input type="text" class="form-input" id="address1" placeholder="기본 주소" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">상세 주소</label>
+                            <input type="text" class="form-input" id="address2" placeholder="상세 주소를 입력하세요">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">배송 메모</label>
+                            <select class="form-input" id="deliveryNote">
+                                <option value="">배송 메모를 선택하세요</option>
+                                <option value="door">문 앞에 놓아주세요</option>
+                                <option value="security">경비실에 맡겨주세요</option>
+                                <option value="call">배송 전 연락 바랍니다</option>
+                                <option value="custom">직접 입력</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Engraving Service -->
+                    <div class="checkout-section">
+                        <h3>✨ 각인 서비스 (무료)</h3>
+                        <div class="form-group">
+                            <label class="form-label">이니셜 각인 (최대 3자)</label>
+                            <input type="text" class="form-input" id="engraving" placeholder="예: KIM" maxlength="3"
+                                style="text-transform: uppercase;">
+                        </div>
+                        <p class="text-secondary" style="font-size: 0.85rem; margin-top: var(--spacing-sm);">
+                            * 영문 대문자만 입력 가능합니다. 각인 후 취소/변경이 불가합니다.
+                        </p>
+                    </div>
+
+                    <!-- Payment Method -->
+                    <div class="checkout-section">
+                        <h3>💳 결제 수단</h3>
+                        <div class="payment-options">
+                            <div class="payment-option active" data-method="card" onclick="selectPayment('card')">
+                                <div class="payment-radio"></div>
+                                <span>💳 신용/체크카드</span>
+                            </div>
+                            <div class="payment-option" data-method="bank" onclick="selectPayment('bank')">
+                                <div class="payment-radio"></div>
+                                <span>🏦 무통장입금</span>
+                            </div>
+                            <div class="payment-option" data-method="kakao" onclick="selectPayment('kakao')">
+                                <div class="payment-radio"></div>
+                                <span>💬 카카오페이</span>
+                            </div>
+                            <div class="payment-option" data-method="naver" onclick="selectPayment('naver')">
+                                <div class="payment-radio"></div>
+                                <span>🔵 네이버페이</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <h3>주문 상품</h3>
+                    <div id="orderItems">
+                        <!-- Order items will be rendered here -->
+                    </div>
+                    <div class="summary-row">
+                        <span>상품 금액</span>
+                        <span id="subtotal">₩0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>배송비</span>
+                        <span id="shipping">무료</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>총 결제 금액</span>
+                        <span id="total">₩0</span>
+                    </div>
+
+                    <!-- Agreement -->
+                    <div style="margin-top: var(--spacing-xl); margin-bottom: var(--spacing-md);">
+                        <label style="display: flex; align-items: flex-start; gap: var(--spacing-sm); cursor: pointer;">
+                            <input type="checkbox" id="agreeTerms" style="margin-top: 4px;">
+                            <span class="text-secondary" style="font-size: 0.85rem;">
+                                주문 내용을 확인하였으며,
+                                <a href="#" class="text-gold">이용약관</a> 및
+                                <a href="#" class="text-gold">개인정보 처리방침</a>에 동의합니다.
+                            </span>
+                        </label>
+                    </div>
+
+                    <button class="btn btn-primary btn-lg btn-full" onclick="placeOrder()">
+                        결제하기
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Order Complete Modal -->
+    <div id="orderModal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 9999; 
+                                 display: none; align-items: center; justify-content: center;">
+        <div style="background: var(--color-bg-card); border-radius: var(--radius-xl); padding: var(--spacing-2xl); 
+                    max-width: 500px; text-align: center; margin: var(--spacing-xl);">
+            <div style="font-size: 4rem; margin-bottom: var(--spacing-lg);">🎉</div>
+            <h2 style="margin-bottom: var(--spacing-md);">주문이 완료되었습니다!</h2>
+            <p class="text-secondary" style="margin-bottom: var(--spacing-xl);">
+                주문 내역은 입력하신 이메일로 발송됩니다.<br>
+                정성을 담아 제작 후 배송해 드리겠습니다.
+            </p>
+            <p style="margin-bottom: var(--spacing-xl);">
+                주문번호: <span class="text-gold" id="orderNumber"></span>
+            </p>
+            <a href="index.html" class="btn btn-primary btn-lg">홈으로 돌아가기</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">아뜰리에 <span>가죽공방</span></a>
+                    <p>30년 전통의 장인정신으로 만드는<br>프리미엄 수공예 가죽 지갑</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="인스타그램">📷</a>
+                        <a href="#" aria-label="페이스북">📘</a>
+                        <a href="#" aria-label="카카오톡">💬</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>제품</h4>
+                    <ul>
+                        <li><a href="products.html?category=half">반지갑</a></li>
+                        <li><a href="products.html?category=long">장지갑</a></li>
+                        <li><a href="products.html?category=card">카드지갑</a></li>
+                        <li><a href="products.html?category=clip">머니클립</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>고객 서비스</h4>
+                    <ul>
+                        <li><a href="#">배송 안내</a></li>
+                        <li><a href="#">교환 및 반품</a></li>
+                        <li><a href="#">A/S 안내</a></li>
+                        <li><a href="#">자주 묻는 질문</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>연락처</h4>
+                    <ul>
+                        <li>📞 02-1234-5678</li>
+                        <li>📧 hello@atelier-leather.kr</li>
+                        <li>🕐 평일 10:00 - 18:00</li>
+                        <li>📍 서울시 성동구 성수동</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 아뜰리에 가죽공방. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        let orderItems = [];
+        let selectedPayment = 'card';
+
+        // 주문 상품 로드
+        function loadOrderItems() {
+            const isBuyNow = getUrlParam('buyNow') === 'true';
+
+            if (isBuyNow) {
+                // 바로 구매
+                const buyNowItem = JSON.parse(localStorage.getItem('buyNowItem'));
+                if (buyNowItem) {
+                    orderItems = [buyNowItem];
+                }
+            } else {
+                // 장바구니에서 결제
+                orderItems = JSON.parse(localStorage.getItem('cart')) || [];
+            }
+
+            if (orderItems.length === 0) {
+                window.location.href = 'products.html';
+                return;
+            }
+
+            renderOrderItems();
+        }
+
+        // 주문 상품 렌더링
+        function renderOrderItems() {
+            const container = document.getElementById('orderItems');
+
+            container.innerHTML = orderItems.map(item => `
+                <div class="order-item">
+                    <div class="order-item-image">
+                        <img src="${item.image}" alt="${item.name}">
+                    </div>
+                    <div class="order-item-info">
+                        <p class="order-item-name">${item.name}</p>
+                        <p class="order-item-detail">${item.color} / ${item.quantity}개</p>
+                    </div>
+                    <div class="order-item-price">${formatPrice(item.price * item.quantity)}</div>
+                </div>
+            `).join('');
+
+            updateOrderSummary();
+        }
+
+        // 주문 요약 업데이트
+        function updateOrderSummary() {
+            const subtotal = orderItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const shipping = subtotal >= 50000 ? 0 : 3000;
+            const total = subtotal + shipping;
+
+            document.getElementById('subtotal').textContent = formatPrice(subtotal);
+            document.getElementById('shipping').textContent = shipping === 0 ? '무료' : formatPrice(shipping);
+            document.getElementById('total').textContent = formatPrice(total);
+        }
+
+        // 결제 수단 선택
+        function selectPayment(method) {
+            selectedPayment = method;
+            document.querySelectorAll('.payment-option').forEach(option => {
+                option.classList.toggle('active', option.dataset.method === method);
+            });
+        }
+
+        // 주소 검색 (데모용)
+        function searchAddress() {
+            showNotification('주소 검색 서비스는 데모 버전에서 지원하지 않습니다.');
+        }
+
+        // 주문하기
+        function placeOrder() {
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const zipcode = document.getElementById('zipcode').value.trim();
+            const address1 = document.getElementById('address1').value.trim();
+            const agreeTerms = document.getElementById('agreeTerms').checked;
+
+            // 유효성 검사
+            if (!name) {
+                showNotification('이름을 입력해주세요.');
+                document.getElementById('name').focus();
+                return;
+            }
+            if (!phone) {
+                showNotification('연락처를 입력해주세요.');
+                document.getElementById('phone').focus();
+                return;
+            }
+            if (!email) {
+                showNotification('이메일을 입력해주세요.');
+                document.getElementById('email').focus();
+                return;
+            }
+            if (!zipcode || !address1) {
+                showNotification('주소를 입력해주세요.');
+                return;
+            }
+            if (!agreeTerms) {
+                showNotification('이용약관 및 개인정보 처리방침에 동의해주세요.');
+                return;
+            }
+
+            // 주문 번호 생성
+            const orderNumber = 'ATL-' + Date.now().toString(36).toUpperCase();
+            document.getElementById('orderNumber').textContent = orderNumber;
+
+            // 장바구니 비우기 (바로 구매가 아닌 경우)
+            if (getUrlParam('buyNow') !== 'true') {
+                clearCart();
+            }
+            localStorage.removeItem('buyNowItem');
+
+            // 주문 완료 모달 표시
+            const modal = document.getElementById('orderModal');
+            modal.style.display = 'flex';
+        }
+
+        // 초기화
+        document.addEventListener('DOMContentLoaded', function () {
+            loadOrderItems();
+
+            // 각인 입력 대문자 변환
+            document.getElementById('engraving').addEventListener('input', function () {
+                this.value = this.value.toUpperCase().replace(/[^A-Z]/g, '');
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="아뜰리에 가죽공방의 프리미엄 수공예 가죽 지갑">
+    <title>제품 상세 | 아뜰리에 가죽공방</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👛</text></svg>">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">아뜰리에 <span>가죽공방</span></a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">홈</a>
+                <a href="products.html" class="nav-link">제품</a>
+                <a href="index.html#brand-story" class="nav-link">브랜드 스토리</a>
+                <a href="cart.html" class="nav-link cart-icon">
+                    🛒
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+            </nav>
+            <button class="mobile-menu-btn" aria-label="메뉴">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="product-detail section">
+        <div class="container">
+            <div class="product-detail-grid">
+                <!-- Product Gallery -->
+                <div class="product-gallery">
+                    <div class="gallery-main">
+                        <img id="mainImage" src="" alt="">
+                    </div>
+                    <div class="gallery-thumbs" id="galleryThumbs">
+                        <!-- Thumbnails will be rendered here -->
+                    </div>
+                </div>
+
+                <!-- Product Info -->
+                <div class="product-detail-info">
+                    <p class="product-category" id="productCategory"></p>
+                    <h1 id="productName"></h1>
+
+                    <div class="product-rating">
+                        <span class="stars" id="productStars"></span>
+                        <span class="rating-count" id="productRating"></span>
+                    </div>
+
+                    <p class="product-detail-price">
+                        <span id="productPrice"></span>
+                        <span id="originalPrice" class="product-price-original" style="font-size: 1.2rem;"></span>
+                    </p>
+
+                    <div class="product-options">
+                        <!-- Color Options -->
+                        <div class="option-group">
+                            <label class="option-label">색상: <span id="selectedColorName"></span></label>
+                            <div class="color-options" id="colorOptions">
+                                <!-- Colors will be rendered here -->
+                            </div>
+                        </div>
+
+                        <!-- Quantity -->
+                        <div class="option-group">
+                            <label class="option-label">수량</label>
+                            <div class="quantity-selector">
+                                <button class="quantity-btn" onclick="changeQuantity(-1)">−</button>
+                                <span class="quantity-value" id="quantity">1</span>
+                                <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="product-buttons">
+                        <button class="btn btn-dark btn-lg" onclick="handleAddToCart()" style="flex: 1;">
+                            🛒 장바구니 담기
+                        </button>
+                        <button class="btn btn-primary btn-lg" onclick="handleBuyNow()" style="flex: 1;">
+                            ⚡ 바로 구매하기
+                        </button>
+                    </div>
+
+                    <!-- Product Description -->
+                    <div class="product-description">
+                        <div class="product-tabs">
+                            <div class="product-tab active" data-tab="description">상세 정보</div>
+                            <div class="product-tab" data-tab="features">소재 및 특징</div>
+                            <div class="product-tab" data-tab="care">관리 방법</div>
+                        </div>
+
+                        <div class="tab-content" id="tabContent">
+                            <div id="descriptionTab">
+                                <p id="productDescription"></p>
+                            </div>
+                            <div id="featuresTab" style="display: none;">
+                                <ul id="productFeatures" style="padding-left: 20px;"></ul>
+                            </div>
+                            <div id="careTab" style="display: none;">
+                                <ul style="padding-left: 20px; color: var(--color-text-secondary);">
+                                    <li style="margin-bottom: 8px;">직사광선을 피해 서늘한 곳에 보관해주세요.</li>
+                                    <li style="margin-bottom: 8px;">물에 젖었을 경우 부드러운 천으로 닦아 자연건조해주세요.</li>
+                                    <li style="margin-bottom: 8px;">가죽 전용 크림으로 주기적인 관리를 권장합니다.</li>
+                                    <li style="margin-bottom: 8px;">장기간 사용하지 않을 시 형태 유지를 위해 종이를 넣어 보관해주세요.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Related Products -->
+    <section class="section" style="background: var(--color-bg-card);">
+        <div class="container">
+            <div class="section-header">
+                <h2>함께 보면 좋은 <span class="text-gold">제품</span></h2>
+            </div>
+            <div class="products-grid" id="relatedProducts">
+                <!-- Related products will be rendered here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">아뜰리에 <span>가죽공방</span></a>
+                    <p>30년 전통의 장인정신으로 만드는<br>프리미엄 수공예 가죽 지갑</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="인스타그램">📷</a>
+                        <a href="#" aria-label="페이스북">📘</a>
+                        <a href="#" aria-label="카카오톡">💬</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>제품</h4>
+                    <ul>
+                        <li><a href="products.html?category=half">반지갑</a></li>
+                        <li><a href="products.html?category=long">장지갑</a></li>
+                        <li><a href="products.html?category=card">카드지갑</a></li>
+                        <li><a href="products.html?category=clip">머니클립</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>고객 서비스</h4>
+                    <ul>
+                        <li><a href="#">배송 안내</a></li>
+                        <li><a href="#">교환 및 반품</a></li>
+                        <li><a href="#">A/S 안내</a></li>
+                        <li><a href="#">자주 묻는 질문</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>연락처</h4>
+                    <ul>
+                        <li>📞 02-1234-5678</li>
+                        <li>📧 hello@atelier-leather.kr</li>
+                        <li>🕐 평일 10:00 - 18:00</li>
+                        <li>📍 서울시 성동구 성수동</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 아뜰리에 가죽공방. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        let currentProduct = null;
+        let selectedColorIndex = 0;
+        let quantity = 1;
+
+        // 제품 정보 로드
+        function loadProduct() {
+            const productId = getUrlParam('id') || 1;
+            currentProduct = getProductById(productId);
+
+            if (!currentProduct) {
+                window.location.href = 'products.html';
+                return;
+            }
+
+            // 페이지 타이틀 업데이트
+            document.title = `${currentProduct.name} | 아뜰리에 가죽공방`;
+
+            // 기본 정보
+            document.getElementById('productCategory').textContent = currentProduct.categoryName;
+            document.getElementById('productName').textContent = currentProduct.name;
+            document.getElementById('productPrice').textContent = formatPrice(currentProduct.price);
+            document.getElementById('productDescription').textContent = currentProduct.description;
+
+            // 할인가
+            const originalPriceEl = document.getElementById('originalPrice');
+            if (currentProduct.originalPrice) {
+                originalPriceEl.textContent = formatPrice(currentProduct.originalPrice);
+                originalPriceEl.style.display = 'inline';
+            } else {
+                originalPriceEl.style.display = 'none';
+            }
+
+            // 별점
+            document.getElementById('productStars').textContent = generateStars(currentProduct.rating);
+            document.getElementById('productRating').textContent =
+                `${currentProduct.rating} (${currentProduct.reviewCount}개의 리뷰)`;
+
+            // 이미지 갤러리
+            document.getElementById('mainImage').src = currentProduct.images[0];
+            document.getElementById('mainImage').alt = currentProduct.name;
+
+            const thumbsContainer = document.getElementById('galleryThumbs');
+            thumbsContainer.innerHTML = currentProduct.images.map((img, index) => `
+                <div class="gallery-thumb ${index === 0 ? 'active' : ''}" onclick="changeMainImage(${index})">
+                    <img src="${img}" alt="${currentProduct.name} 이미지 ${index + 1}">
+                </div>
+            `).join('');
+
+            // 색상 옵션
+            const colorContainer = document.getElementById('colorOptions');
+            colorContainer.innerHTML = currentProduct.colors.map((color, index) => `
+                <div class="color-option ${index === 0 ? 'active' : ''}" 
+                     style="background-color: ${color};" 
+                     onclick="selectColor(${index})"
+                     title="${currentProduct.colorNames[index]}">
+                </div>
+            `).join('');
+            document.getElementById('selectedColorName').textContent = currentProduct.colorNames[0];
+
+            // 특징
+            const featuresContainer = document.getElementById('productFeatures');
+            featuresContainer.innerHTML = currentProduct.features.map(feature =>
+                `<li style="margin-bottom: 8px; color: var(--color-text-secondary);">${feature}</li>`
+            ).join('');
+
+            // 관련 제품
+            loadRelatedProducts();
+        }
+
+        // 관련 제품 로드
+        function loadRelatedProducts() {
+            const related = products
+                .filter(p => p.id !== currentProduct.id && p.category === currentProduct.category)
+                .slice(0, 4);
+
+            // 관련 제품이 부족하면 다른 카테고리에서 채움
+            if (related.length < 4) {
+                const others = products
+                    .filter(p => p.id !== currentProduct.id && !related.includes(p))
+                    .slice(0, 4 - related.length);
+                related.push(...others);
+            }
+
+            const container = document.getElementById('relatedProducts');
+            container.innerHTML = related.map(p => createProductCardHTML(p)).join('');
+        }
+
+        // 메인 이미지 변경
+        function changeMainImage(index) {
+            document.getElementById('mainImage').src = currentProduct.images[index];
+
+            document.querySelectorAll('.gallery-thumb').forEach((thumb, i) => {
+                thumb.classList.toggle('active', i === index);
+            });
+        }
+
+        // 색상 선택
+        function selectColor(index) {
+            selectedColorIndex = index;
+            document.getElementById('selectedColorName').textContent = currentProduct.colorNames[index];
+
+            document.querySelectorAll('.color-option').forEach((option, i) => {
+                option.classList.toggle('active', i === index);
+            });
+        }
+
+        // 수량 변경
+        function changeQuantity(change) {
+            quantity = Math.max(1, quantity + change);
+            document.getElementById('quantity').textContent = quantity;
+        }
+
+        // 장바구니 담기
+        function handleAddToCart() {
+            addToCart(currentProduct.id, quantity, selectedColorIndex);
+        }
+
+        // 바로 구매
+        function handleBuyNow() {
+            buyNow(currentProduct.id, quantity, selectedColorIndex);
+        }
+
+        // 탭 전환
+        function setupTabs() {
+            document.querySelectorAll('.product-tab').forEach(tab => {
+                tab.addEventListener('click', function () {
+                    const tabName = this.dataset.tab;
+
+                    // 탭 활성화
+                    document.querySelectorAll('.product-tab').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // 콘텐츠 전환
+                    document.getElementById('descriptionTab').style.display = tabName === 'description' ? 'block' : 'none';
+                    document.getElementById('featuresTab').style.display = tabName === 'features' ? 'block' : 'none';
+                    document.getElementById('careTab').style.display = tabName === 'care' ? 'block' : 'none';
+                });
+            });
+        }
+
+        // 초기화
+        document.addEventListener('DOMContentLoaded', function () {
+            loadProduct();
+            setupTabs();
+        });
+    </script>
+</body>
+
+</html>

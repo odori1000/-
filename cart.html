@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="아뜰리에 가죽공방 장바구니">
+    <title>장바구니 | 아뜰리에 가죽공방</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👛</text></svg>">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">아뜰리에 <span>가죽공방</span></a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">홈</a>
+                <a href="products.html" class="nav-link">제품</a>
+                <a href="index.html#brand-story" class="nav-link">브랜드 스토리</a>
+                <a href="cart.html" class="nav-link cart-icon active">
+                    🛒
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+            </nav>
+            <button class="mobile-menu-btn" aria-label="메뉴">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="cart-page section">
+        <div class="container">
+            <h1 style="margin-bottom: var(--spacing-2xl);">장바구니</h1>
+
+            <div class="cart-grid">
+                <!-- Cart Items -->
+                <div class="cart-items" id="cartItems">
+                    <div class="cart-header">
+                        <span>
+                            <div class="cart-checkbox" id="selectAllCheckbox" onclick="toggleSelectAll()"></div>
+                        </span>
+                        <span>상품 정보</span>
+                        <span>가격</span>
+                        <span>수량</span>
+                        <span>소계</span>
+                        <span></span>
+                    </div>
+                    <div id="cartItemsList">
+                        <!-- Cart items will be rendered here -->
+                    </div>
+                </div>
+
+                <!-- Cart Summary -->
+                <div class="cart-summary">
+                    <h3>주문 요약</h3>
+                    <div class="summary-row">
+                        <span>상품 금액</span>
+                        <span id="subtotal">₩0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>배송비</span>
+                        <span id="shipping">무료</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>총 결제 금액</span>
+                        <span id="total">₩0</span>
+                    </div>
+                    <button class="btn btn-primary btn-lg btn-full" onclick="proceedToCheckout()">
+                        주문하기
+                    </button>
+                    <a href="products.html" class="btn btn-secondary btn-full" style="margin-top: var(--spacing-md);">
+                        쇼핑 계속하기
+                    </a>
+                </div>
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <div class="empty-icon">🛒</div>
+                <h3>장바구니가 비어있습니다</h3>
+                <p>마음에 드는 제품을 장바구니에 담아보세요.</p>
+                <a href="products.html" class="btn btn-primary">쇼핑하러 가기</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">아뜰리에 <span>가죽공방</span></a>
+                    <p>30년 전통의 장인정신으로 만드는<br>프리미엄 수공예 가죽 지갑</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="인스타그램">📷</a>
+                        <a href="#" aria-label="페이스북">📘</a>
+                        <a href="#" aria-label="카카오톡">💬</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>제품</h4>
+                    <ul>
+                        <li><a href="products.html?category=half">반지갑</a></li>
+                        <li><a href="products.html?category=long">장지갑</a></li>
+                        <li><a href="products.html?category=card">카드지갑</a></li>
+                        <li><a href="products.html?category=clip">머니클립</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>고객 서비스</h4>
+                    <ul>
+                        <li><a href="#">배송 안내</a></li>
+                        <li><a href="#">교환 및 반품</a></li>
+                        <li><a href="#">A/S 안내</a></li>
+                        <li><a href="#">자주 묻는 질문</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>연락처</h4>
+                    <ul>
+                        <li>📞 02-1234-5678</li>
+                        <li>📧 hello@atelier-leather.kr</li>
+                        <li>🕐 평일 10:00 - 18:00</li>
+                        <li>📍 서울시 성동구 성수동</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 아뜰리에 가죽공방. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        let selectedItems = [];
+
+        // 장바구니 렌더링
+        function renderCart() {
+            const cartData = JSON.parse(localStorage.getItem('cart')) || [];
+            const container = document.getElementById('cartItemsList');
+            const cartItemsEl = document.getElementById('cartItems');
+            const emptyStateEl = document.getElementById('emptyState');
+            const summaryEl = document.querySelector('.cart-summary');
+
+            if (cartData.length === 0) {
+                cartItemsEl.style.display = 'none';
+                summaryEl.style.display = 'none';
+                emptyStateEl.style.display = 'block';
+                return;
+            }
+
+            cartItemsEl.style.display = 'block';
+            summaryEl.style.display = 'block';
+            emptyStateEl.style.display = 'none';
+
+            // 선택 상태 초기화
+            if (selectedItems.length === 0) {
+                selectedItems = cartData.map((_, i) => i);
+            }
+
+            container.innerHTML = cartData.map((item, index) => `
+                <div class="cart-item">
+                    <div class="cart-checkbox ${selectedItems.includes(index) ? 'checked' : ''}" 
+                         onclick="toggleItemSelect(${index})"></div>
+                    <div class="cart-product">
+                        <div class="cart-product-image">
+                            <img src="${item.image}" alt="${item.name}">
+                        </div>
+                        <div>
+                            <p class="cart-product-name">${item.name}</p>
+                            <p class="cart-product-option">색상: ${item.color}</p>
+                        </div>
+                    </div>
+                    <div class="cart-price">${formatPrice(item.price)}</div>
+                    <div class="cart-quantity">
+                        <div class="quantity-selector" style="transform: scale(0.85);">
+                            <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">−</button>
+                            <span class="quantity-value">${item.quantity}</span>
+                            <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="cart-subtotal">${formatPrice(item.price * item.quantity)}</div>
+                    <button class="cart-remove" onclick="removeItem(${index})">✕</button>
+                </div>
+            `).join('');
+
+            updateSummary(cartData);
+            updateSelectAllCheckbox(cartData);
+        }
+
+        // 요약 업데이트
+        function updateSummary(cartData) {
+            let subtotal = 0;
+
+            selectedItems.forEach(index => {
+                if (cartData[index]) {
+                    subtotal += cartData[index].price * cartData[index].quantity;
+                }
+            });
+
+            const shipping = subtotal >= 50000 ? 0 : 3000;
+            const total = subtotal + shipping;
+
+            document.getElementById('subtotal').textContent = formatPrice(subtotal);
+            document.getElementById('shipping').textContent = shipping === 0 ? '무료' : formatPrice(shipping);
+            document.getElementById('total').textContent = formatPrice(total);
+        }
+
+        // 수량 업데이트
+        function updateQuantity(index, change) {
+            const cartData = JSON.parse(localStorage.getItem('cart')) || [];
+            if (cartData[index]) {
+                cartData[index].quantity += change;
+                if (cartData[index].quantity <= 0) {
+                    cartData.splice(index, 1);
+                    selectedItems = selectedItems.filter(i => i !== index).map(i => i > index ? i - 1 : i);
+                }
+                localStorage.setItem('cart', JSON.stringify(cartData));
+                updateCartCount();
+                renderCart();
+            }
+        }
+
+        // 아이템 삭제
+        function removeItem(index) {
+            const cartData = JSON.parse(localStorage.getItem('cart')) || [];
+            cartData.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cartData));
+            selectedItems = selectedItems.filter(i => i !== index).map(i => i > index ? i - 1 : i);
+            updateCartCount();
+            renderCart();
+        }
+
+        // 아이템 선택 토글
+        function toggleItemSelect(index) {
+            if (selectedItems.includes(index)) {
+                selectedItems = selectedItems.filter(i => i !== index);
+            } else {
+                selectedItems.push(index);
+            }
+            renderCart();
+        }
+
+        // 전체 선택 토글
+        function toggleSelectAll() {
+            const cartData = JSON.parse(localStorage.getItem('cart')) || [];
+            if (selectedItems.length === cartData.length) {
+                selectedItems = [];
+            } else {
+                selectedItems = cartData.map((_, i) => i);
+            }
+            renderCart();
+        }
+
+        // 전체 선택 체크박스 업데이트
+        function updateSelectAllCheckbox(cartData) {
+            const checkbox = document.getElementById('selectAllCheckbox');
+            if (selectedItems.length === cartData.length && cartData.length > 0) {
+                checkbox.classList.add('checked');
+            } else {
+                checkbox.classList.remove('checked');
+            }
+        }
+
+        // 결제 진행
+        function proceedToCheckout() {
+            if (selectedItems.length === 0) {
+                showNotification('결제할 상품을 선택해주세요.');
+                return;
+            }
+            window.location.href = 'checkout.html';
+        }
+
+        // 초기화
+        document.addEventListener('DOMContentLoaded', function () {
+            renderCart();
+        });
+    </script>
+</body>
+
+</html>
